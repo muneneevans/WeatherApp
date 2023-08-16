@@ -49,10 +49,10 @@ const useCurrentWeather = (
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetchCurrentWeather();
     return () => {
-      // TODO Add abort controller
-      //   effect;
+      abortController.abort();
     };
   }, []);
 

@@ -7,7 +7,6 @@ type Props = {
   forecast: WeatherForecast;
 };
 
-// TODO Use Memo
 const DayForecast = ({forecast}: Props): JSX.Element => {
   const theme = useWeatherTheme(forecast);
   return (
@@ -50,4 +49,4 @@ const WeatherIcon = styled.Image`
 `;
 //#endregion
 
-export default DayForecast;
+export default React.memo(DayForecast);

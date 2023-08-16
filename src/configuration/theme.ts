@@ -1,6 +1,6 @@
-import {Theme} from '../types/theme';
+import {DefaultTheme} from 'styled-components';
 
-export const theme: Theme = {
+export const theme: DefaultTheme = {
   fontTiny: 8,
   fontSmall: 12,
   fontMedium: 14,
@@ -10,6 +10,6 @@ export const theme: Theme = {
   backgroundColor: '#000',
   textColor: '#fff',
   textColorLight: '#bdbdbd',
-  foreGroundColor: '#fff',
+  foregroundColor: '#fff',
 };
 export default theme;

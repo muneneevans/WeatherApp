@@ -29,7 +29,7 @@ const useWeatherForecast = (
       const newWeatherForecast: WeatherForecast[] = filteredForecast.map(
         dailyForecast => summarizeDayForecast(dailyForecast),
       );
-      console.log(newWeatherForecast);
+      // console.log(newWeatherForecast);
       setWeatherForecast(newWeatherForecast);
     } else {
       setError(
@@ -42,7 +42,11 @@ const useWeatherForecast = (
 
   useEffect(() => {
     fetchForecast();
-    return () => {};
+    const abortController = new AbortController();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return {weatherForecast, isLoading, error};

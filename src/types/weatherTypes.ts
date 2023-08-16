@@ -23,7 +23,7 @@ export enum WeatherLabel {
 }
 export enum WeatherColors {
   Clouds = '#54717A',
-  Rain = '57575D',
+  Rain = '#57575D',
   Sun = '#47AB2F',
 }
 
