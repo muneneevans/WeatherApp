@@ -1,2 +1,2 @@
-import Home from './Home';
+import Home from './screens/Home';
 export default Home;

@@ -3,9 +3,9 @@ import styled, {ThemeProvider} from 'styled-components/native';
 import Header from 'components/Header';
 
 import useCurrentWeather from 'src/hooks/useCurrentWeather';
-import theme from './configuration/theme';
-import useWeatherForecast from './hooks/useWeatherForecast';
-import ForecastTable from './components/ForecastTable';
+import theme from '../configuration/theme';
+import useWeatherForecast from '../hooks/useWeatherForecast';
+import ForecastTable from '../components/ForecastTable';
 
 const Home = (): JSX.Element => {
   // Test cases
@@ -40,7 +40,7 @@ const Home = (): JSX.Element => {
 //#region styled-components
 
 const Page = styled.View`
-  background-color: ${props => props.theme.PRIMARY_BACKGROUND_COLOR};
+  background-color: ${props => props.theme.backgroundColor};
   flex: 1;
 `;
 
