@@ -18,9 +18,7 @@ const useWeatherForecast = (
   const fetchForecast = async () => {
     setIsLoading(true);
     const fetchResponse = await fetch(
-      // TODO Revert
-      'https://cd06-41-80-116-151.ngrok.io/forecast',
-      // `${API_ENDPOINT}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
+      `${API_ENDPOINT}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
     );
 
     if (fetchResponse.ok) {
@@ -44,7 +42,11 @@ const useWeatherForecast = (
 
   useEffect(() => {
     fetchForecast();
-    return () => {};
+    const abortController = new AbortController();
+
+    return () => {
+      abortController.abort();
+    };
   }, []);
 
   return {weatherForecast, isLoading, error};

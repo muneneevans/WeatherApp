@@ -10,7 +10,7 @@ const useLocation = (): LocationReturnType => {
 
   const getLocation = async () => {
     Geolocation.getCurrentPosition(info =>
-      setLocation(info as unknown as GeoLocation),
+      setLocation(info as unknown as LocationInfo),
     );
   };
 

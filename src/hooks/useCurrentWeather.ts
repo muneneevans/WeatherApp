@@ -17,14 +17,12 @@ const useCurrentWeather = (
     maxTemperature: 0,
     weatherCondition: 'Sunny',
   });
-
   const [isLoading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   const fetchCurrentWeather = async () => {
     const fetchResponse = await fetch(
-      'https://cd06-41-80-116-151.ngrok.io/weather',
-      // `${API_ENDPOINT}/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
+      `${API_ENDPOINT}/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
     );
 
     if (fetchResponse.ok) {
@@ -51,10 +49,10 @@ const useCurrentWeather = (
   };
 
   useEffect(() => {
+    const abortController = new AbortController();
     fetchCurrentWeather();
     return () => {
-      // TODO Add abort controller
-      //   effect;
+      abortController.abort();
     };
   }, []);
 
