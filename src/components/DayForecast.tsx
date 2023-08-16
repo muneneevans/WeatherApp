@@ -2,7 +2,6 @@ import React from 'react';
 import {WeatherForecast} from 'src/types/weatherTypes';
 import styled from 'styled-components/native';
 import useWeatherTheme from 'src/hooks/useWeatherTheme';
-import {Image} from 'react-native';
 
 type Props = {
   forecast: WeatherForecast;
@@ -17,7 +16,6 @@ const DayForecast = ({forecast}: Props): JSX.Element => {
         <TemperatureValue alignment="left">{forecast.day}</TemperatureValue>
       </TemperatureItem>
       <TemperatureItem>
-        {/* <TemperatureValue alignment="center">{'Icon'}</TemperatureValue> */}
         <WeatherIcon source={theme.icon} />
       </TemperatureItem>
       <TemperatureItem>

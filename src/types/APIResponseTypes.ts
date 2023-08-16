@@ -10,7 +10,7 @@ export interface CurrentWeatherAPIResponse {
   wind: Wind;
   clouds: Clouds;
   dt: number;
-  sys: Sys;
+  sys: ForecastSys;
   timezone: number;
   id: number;
   name: string;
@@ -35,7 +35,7 @@ export interface Main {
   humidity: number;
 }
 
-export interface Sys {
+export interface ForecastSys {
   type: number;
   id: number;
   country: string;
@@ -91,7 +91,7 @@ export interface ForecastItem {
   wind: Wind;
   visibility: number;
   pop: number;
-  sys: Sys;
+  sys: ForecastSys;
   dt_txt: string;
 }
 
@@ -111,33 +111,20 @@ export interface MainClass {
   temp_kf: number;
 }
 
-export interface Sys {
-  pod: Pod;
+export interface ForecastSys {
+  pod: ForecastPod;
 }
 
-export enum Pod {
+export enum ForecastPod {
   D = 'd',
   N = 'n',
 }
 
 export interface Weather {
   id: number;
-  main: MainEnum;
-  description: Description;
+  main: string;
+  description: string;
   icon: string;
-}
-
-export enum Description {
-  BrokenClouds = 'broken clouds',
-  ClearSky = 'clear sky',
-  FewClouds = 'few clouds',
-  OvercastClouds = 'overcast clouds',
-  ScatteredClouds = 'scattered clouds',
-}
-
-export enum MainEnum {
-  Clear = 'Clear',
-  Clouds = 'Clouds',
 }
 
 export interface Wind {

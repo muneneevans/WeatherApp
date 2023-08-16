@@ -1,13 +1,12 @@
 import {WeatherSummary, WeatherTheme} from 'src/types/weatherTypes';
 
-// TODO fix error
-import sunnyImage from 'src/assets/images/sea_sunny.png';
-import cloudyImage from 'src/assets/images/sea_cloudy.png';
-import rainyImage from 'src/assets/images/sea_rainy.png';
+const sunnyImage = require('src/assets/images/sea_sunny.png');
+const cloudyImage = require('src/assets/images/sea_cloudy.png');
+const rainyImage = require('src/assets/images/sea_rainy.png');
 
-import sunnyIcon from 'src/assets/Icons/clear.png';
-import cloudyIcon from 'src/assets/Icons/partlysunny.png';
-import rainyIcon from 'src/assets/Icons/rain.png';
+const sunnyIcon = require('src/assets/Icons/clear.png');
+const cloudyIcon = require('src/assets/Icons/partlysunny.png');
+const rainyIcon = require('src/assets/Icons/rain.png');
 
 import {WeatherLabel, WeatherColors} from 'src/types/weatherTypes';
 const useWeatherTheme = (weather: WeatherSummary): WeatherTheme => {
