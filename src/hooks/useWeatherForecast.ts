@@ -18,7 +18,9 @@ const useWeatherForecast = (
   const fetchForecast = async () => {
     setIsLoading(true);
     const fetchResponse = await fetch(
-      `${API_ENDPOINT}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
+      // TODO Revert
+      'https://cd06-41-80-116-151.ngrok.io/forecast',
+      // `${API_ENDPOINT}/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
     );
 
     if (fetchResponse.ok) {
@@ -29,7 +31,7 @@ const useWeatherForecast = (
       const newWeatherForecast: WeatherForecast[] = filteredForecast.map(
         dailyForecast => summarizeDayForecast(dailyForecast),
       );
-      console.log(newWeatherForecast);
+      // console.log(newWeatherForecast);
       setWeatherForecast(newWeatherForecast);
     } else {
       setError(

@@ -1,31 +1,55 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {WeatherSummary} from 'src/types/weatherTypes';
 import useWeatherTheme from 'src/hooks/useWeatherTheme';
+import {LocationInfo} from 'src/types/locationTypes';
+import useCurrentWeather from 'src/hooks/useCurrentWeather';
+import ErrorMessage from './ErrorMessage';
+import {ActivityIndicator} from 'react-native';
 
-// TODO Extract Props
-const Header = ({weather}: {weather: WeatherSummary}): JSX.Element => {
-  const weatherTheme = useWeatherTheme(weather);
+type HeaderProps = {
+  location: LocationInfo;
+};
+
+const Header = ({location}: HeaderProps): JSX.Element => {
+  console.log('current Location', location);
+
+  const {currentWeather, isLoading, error} = useCurrentWeather({
+    latitude: location.coords.latitude.toString(),
+    longitude: location.coords.longitude.toString(),
+  });
+
+  const shouldShowError = !isLoading && error;
+
+  const weatherTheme = useWeatherTheme(currentWeather);
+
+  if (isLoading) {
+    return <ActivityIndicator size="large" />;
+  }
+
+  if (shouldShowError) {
+    return <ErrorMessage message={error} />;
+  }
+
   return (
     <Container color={weatherTheme.color}>
       <Banner source={weatherTheme.image}>
         <SafeAreaView />
-        <BannerTitle>{`${weather.currentTemperature}º`}</BannerTitle>
+        <BannerTitle>{`${currentWeather.currentTemperature}º`}</BannerTitle>
         <BannerSubTitle>{weatherTheme.label}</BannerSubTitle>
       </Banner>
       <Temperature>
         <TemperatureItem>
-          <TemperatureValue>{weather.minTemperature}</TemperatureValue>
+          <TemperatureValue>{currentWeather.minTemperature}</TemperatureValue>
           <TemperatureValue>Min</TemperatureValue>
         </TemperatureItem>
         <TemperatureItem>
           <TemperatureValue>
-            {`${weather.currentTemperature}º`}
+            {`${currentWeather.currentTemperature}º`}
           </TemperatureValue>
           <TemperatureValue>Current</TemperatureValue>
         </TemperatureItem>
         <TemperatureItem>
-          <TemperatureValue>{`${weather.maxTemperature}º`}</TemperatureValue>
+          <TemperatureValue>{`${currentWeather.maxTemperature}º`}</TemperatureValue>
           <TemperatureValue>Max</TemperatureValue>
         </TemperatureItem>
       </Temperature>
@@ -33,7 +57,7 @@ const Header = ({weather}: {weather: WeatherSummary}): JSX.Element => {
   );
 };
 
-//#region styled components
+//#region styled components`
 const Container = styled.View<{color: string}>`
   max-height: 450;
   flex: 3;
@@ -69,7 +93,7 @@ const TemperatureValue = styled.Text`
   color: ${props => props.theme.textColor};
 `;
 
-const Temperature = styled.View`
+const Temperature = styled.View<{color: string}>`
   flex-direction: row;
   justify-content: space-between;
   padding-vertical: 10;
@@ -79,4 +103,4 @@ const TemperatureItem = styled.View`
 `;
 //#endregion
 
-export default Header;
+export default React.memo(Header);

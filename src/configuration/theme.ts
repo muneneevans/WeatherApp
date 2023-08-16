@@ -10,6 +10,6 @@ export const theme: Theme = {
   backgroundColor: '#000',
   textColor: '#fff',
   textColorLight: '#bdbdbd',
-  foreGroundColor: '#fff',
+  foregroundColor: '#fff',
 };
 export default theme;
