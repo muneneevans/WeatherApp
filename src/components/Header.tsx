@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import sunnyImage from 'src/assets/images/sea_sunny.png';
 import {WeatherSummary} from 'src/types/weatherTypes';
 import useWeatherTheme from 'src/hooks/useWeatherTheme';
 
+// TODO Extract Props
 const Header = ({weather}: {weather: WeatherSummary}): JSX.Element => {
   const weatherTheme = useWeatherTheme(weather);
   return (
@@ -44,7 +44,6 @@ const SafeAreaView = styled.SafeAreaView`
   flex: 0;
 `;
 const Banner = styled.ImageBackground`
-  margin-bottom: 25;
   flex: 1;
   justify-content: center;
   align-items: center;

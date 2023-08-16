@@ -1,6 +1,6 @@
-import {formatTemperature} from './../utils/weatherUtils';
+import {roundOffTemperature} from './../utils/weatherUtils';
 import {API_ENDPOINT, API_KEY} from './../configuration/constants';
-import {CurrentWeatherAPIResponse} from '../types/APIResponses';
+import {CurrentWeatherAPIResponse} from '../types/APIResponseTypes';
 import {WeatherSummary, Coordinates} from '../types/weatherTypes';
 import {useState, useEffect} from 'react';
 
@@ -9,7 +9,7 @@ const useCurrentWeather = (
 ): {
   currentWeather: WeatherSummary;
   isLoading: boolean;
-  error: string;
+  error: string | null;
 } => {
   const [currentWeather, setCurrentWeather] = useState<WeatherSummary>({
     currentTemperature: 0,
@@ -18,11 +18,11 @@ const useCurrentWeather = (
     weatherCondition: 'Sunny',
   });
   const [isLoading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string>('');
+  const [error, setError] = useState<string | null>(null);
 
   const fetchCurrentWeather = async () => {
     const fetchResponse = await fetch(
-      `${API_ENDPOINT}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
+      `${API_ENDPOINT}/weather?lat=${coordinates.latitude}&lon=${coordinates.longitude}&appid=${API_KEY}&units=metric`,
     );
 
     if (fetchResponse.ok) {
@@ -30,16 +30,17 @@ const useCurrentWeather = (
         await fetchResponse.json();
 
       const newWeatherSummary: WeatherSummary = {
-        currentTemperature: formatTemperature(
+        currentTemperature: roundOffTemperature(
           currentTemperature.main.feels_like,
         ),
-        minTemperature: formatTemperature(currentTemperature.main.temp_min),
-        maxTemperature: formatTemperature(currentTemperature.main.temp_max),
+        minTemperature: roundOffTemperature(currentTemperature.main.temp_min),
+        maxTemperature: roundOffTemperature(currentTemperature.main.temp_max),
         weatherCondition: currentTemperature?.weather[0].main,
       };
 
       setCurrentWeather(newWeatherSummary);
     } else {
+      // TODO Use
       setError(
         'An error occurred while fetching current weather. Please retry',
       );

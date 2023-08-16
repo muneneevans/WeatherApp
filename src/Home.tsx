@@ -4,8 +4,11 @@ import Header from 'components/Header';
 
 import useCurrentWeather from 'src/hooks/useCurrentWeather';
 import theme from './configuration/theme';
+import useWeatherForecast from './hooks/useWeatherForecast';
+import ForecastTable from './components/ForecastTable';
 
 const Home = (): JSX.Element => {
+  // Test cases
   // const {currentWeather, isLoading, error} = useCurrentWeather({
   //   latitude: '-1.204430',
   //   longitude: '36.942629',
@@ -18,30 +21,17 @@ const Home = (): JSX.Element => {
     latitude: '26.034907',
     longitude: '-80.763846',
   });
-  console.log(currentWeather);
+  const {weatherForecast} = useWeatherForecast({
+    latitude: '26.034907',
+    longitude: '-80.763846',
+  });
+  // console.log(weatherForecast);
 
   return (
     <ThemeProvider theme={theme}>
       <Page>
         <Header weather={currentWeather} />
-
-        <ForecastTable>
-          {Array(5)
-            .fill({})
-            .map(() => (
-              <ForecastField>
-                <TemperatureItem>
-                  <TemperatureValue>Min </TemperatureValue>
-                </TemperatureItem>
-                <TemperatureItem>
-                  <TemperatureValue>Min</TemperatureValue>
-                </TemperatureItem>
-                <TemperatureItem>
-                  <TemperatureValue>Min</TemperatureValue>
-                </TemperatureItem>
-              </ForecastField>
-            ))}
-        </ForecastTable>
+        <ForecastTable weather={currentWeather} forecasts={weatherForecast} />
       </Page>
     </ThemeProvider>
   );
@@ -52,24 +42,6 @@ const Home = (): JSX.Element => {
 const Page = styled.View`
   background-color: ${props => props.theme.PRIMARY_BACKGROUND_COLOR};
   flex: 1;
-`;
-
-const TemperatureItem = styled.View`
-  padding-horizontal: 20;
-`;
-const TemperatureValue = styled.Text`
-  text-align: center;
-`;
-const ForecastTable = styled.View`
-  flex: 3;
-  background-color: green;
-  padding-vertical: 10;
-`;
-
-const ForecastField = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  padding-vertical: 15;
 `;
 
 //#endregion
