@@ -18,7 +18,7 @@ const Home = (): JSX.Element => {
   return (
     <ThemeProvider theme={theme}>
       {location && (
-        <Page>
+        <Page testID="home-content-container">
           <Header location={location} />
           <ForecastTable location={location} />
         </Page>

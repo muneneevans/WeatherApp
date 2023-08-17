@@ -30,10 +30,10 @@ const DayForecast = ({forecast}: Props): JSX.Element => {
 const ForecastField = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding-vertical: 15;
+  padding-vertical: ${props => props.theme.lg};
 `;
 const TemperatureItem = styled.View`
-  padding-horizontal: 20;
+  padding-horizontal: ${props => props.theme.xl};
   flex: 1;
 `;
 const TemperatureValue = styled.Text<{alignment: string}>`
@@ -42,8 +42,8 @@ const TemperatureValue = styled.Text<{alignment: string}>`
   font-size: ${props => props.theme.fontMedium};
 `;
 const WeatherIcon = styled.Image`
-  height: 20;
-  weight: 30;
+  height: ${props => props.theme.xl};
+  weight: ${props => props.theme.xxl};
   align-self: center;
   resize-mode: contain;
 `;

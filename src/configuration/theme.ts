@@ -1,4 +1,4 @@
-import {DefaultTheme} from 'styled-components';
+import {DefaultTheme} from 'styled-components/native';
 
 export const theme: DefaultTheme = {
   fontTiny: 8,
@@ -11,5 +11,10 @@ export const theme: DefaultTheme = {
   textColor: '#fff',
   textColorLight: '#bdbdbd',
   foregroundColor: '#fff',
+  sm: 5,
+  md: 10,
+  lg: 15,
+  xl: 20,
+  xxl: 30,
 };
 export default theme;

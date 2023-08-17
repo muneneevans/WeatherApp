@@ -59,7 +59,7 @@ const Header = ({location}: HeaderProps): JSX.Element => {
 
 //#region styled components`
 const Container = styled.View<{color: string}>`
-  max-height: 450;
+  max-height: 450px;
   flex: 3;
   background-color: ${props => props.color};
 `;
@@ -96,10 +96,10 @@ const TemperatureValue = styled.Text`
 const Temperature = styled.View<{color: string}>`
   flex-direction: row;
   justify-content: space-between;
-  padding-vertical: 10;
+  padding-vertical: ${props => props.theme.md};
 `;
 const TemperatureItem = styled.View`
-  padding-horizontal: 20;
+  padding-horizontal: ${props => props.theme.xl};
 `;
 //#endregion
 

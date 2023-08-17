@@ -49,7 +49,7 @@ const ForecastTable = ({location}: ForecastTableProps): JSX.Element => {
 const Container = styled.View<{color: string}>`
   flex: 3;
   background-color: ${props => props.color};
-  padding-vertical: 10;
+  padding-vertical: ${props => props.theme.md};
 `;
 
 //#endregion

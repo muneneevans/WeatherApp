@@ -27,8 +27,15 @@
       ]
     },
     "types": [
-      "@types/styled-components-react-native"
+      "@types/styled-components-react-native",
+      "jest"
     ]
   },
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "**/*.test.ts"
+  ],
   "noImplicitAny": false
 }
